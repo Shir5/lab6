@@ -3,9 +3,7 @@ import collection.PersonCollection;
 import commands.*;
 import util.InputUtil;
 
-import java.util.LinkedHashMap;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 import java.io.FileOutputStream;
 
 public class Main {
@@ -14,20 +12,34 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         PersonCollection personCollection = new PersonCollection();
-
-        while (true) {
-
-            String command = scanner.nextLine().trim().toLowerCase(Locale.ROOT);
-
-            if (command.equals("insert null")) {
+        String command = "";
 
 
-                Person person = InputUtil.requestPerson();
-                personCollection.put(person.getId(),person);
+        while (!command.equals("exit")) {
+
+            command = scanner.nextLine().trim().toLowerCase(Locale.ROOT);
+
+            switch(command){
+                case "insert null":
+                    Person person = InputUtil.requestPerson();
+                    personCollection.put(person.getId(),person);
+                    break;
+
+                case "info":
+                    personCollection.printInfo();
+                    break;
+                case "exit":
+                    //Выходим
+                    break;
+
+
+                default:
+                    System.out.println("Несуществующая, или неверно заданная команда! Проверьте корректность и повторите попытку.");
             }
-            if (command.equals("info")) {
-                personCollection.printInfo();
-            }
+
+
+
+
         }
 
     }
