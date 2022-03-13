@@ -59,7 +59,7 @@ public class InsertNull {
                 throw new IdException("Не верные данные координат");
             }
             Location location = new Location(x1, y1, z1);
-            Person person = new Person(id, name, coordinates, creationDate, height, weight, hairColor, nationality, location);
+            Person person = new Person(name, coordinates, creationDate, height, weight, hairColor, nationality, location);
         }catch (Exception e){
             System.out.println("Неправильный формат ввода");
             insertNull();

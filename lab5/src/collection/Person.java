@@ -3,7 +3,9 @@ package collection;
 import java.time.ZonedDateTime;
 
 public class Person implements Comparable<Person> {
-    private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private static int counter = 0;
+
+    private Integer id = ++counter; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private java.time.ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
@@ -85,10 +87,9 @@ public class Person implements Comparable<Person> {
         this.location = location;
     }
 
-    public Person (Integer id, String name, Coordinates coordinates,
+    public Person (String name, Coordinates coordinates,
                    java.time.ZonedDateTime creationDate, Long height, Integer weight, Color hairColor, Country nationality, Location location) {
 
-        this.id = id;
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = creationDate;
@@ -100,7 +101,19 @@ public class Person implements Comparable<Person> {
 
     }
 
-
+    @Override
+    public String toString() {
+        return
+                "Ключ (id): " + id +
+                "; Имя: " + name +
+                "; Координаты: " + coordinates +
+                "; Время: " + creationDate +
+                "; Высота: " + height +
+                "; Вес: " + weight +
+                "; Цвет волос: " + hairColor +
+                "; Национальность: " + nationality +
+                "; Локация: " + location;
+    }
 
     @Override
     public int compareTo(Person p) {
@@ -109,6 +122,7 @@ public class Person implements Comparable<Person> {
 
     }
 }
+
 
     
 

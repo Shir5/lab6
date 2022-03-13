@@ -10,11 +10,6 @@ public class InputUtil {
     public static Person requestPerson(){
         try {
             Scanner scanner = new Scanner(System.in);
-            System.out.print("Введите ключ (id): ");
-            Integer id = Integer.valueOf(scanner.nextLine());
-            if (id == null){
-                throw new IdException("Id введено не верно");
-            }
             System.out.print("Введите имя: ");
             String name = scanner.nextLine();
             System.out.println("Введите координаты");
@@ -40,7 +35,7 @@ public class InputUtil {
             ZonedDateTime creationDate = ZonedDateTime.now();
             Coordinates coordinates = new Coordinates(x, y);
             Location location = new Location(x1, y1, z1);
-            Person person = new Person(id, name, coordinates, creationDate, height, weight, hairColor, nationality, location);
+            Person person = new Person(name, coordinates, creationDate, height, weight, hairColor, nationality, location);
             return person;
         }catch (Exception e){
             System.out.println("Неправильный формат ввода");
