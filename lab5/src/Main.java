@@ -3,19 +3,16 @@ import collection.PersonCollection;
 import util.InputUtil;
 import java.util.*;
 
+
 public class Main {
 
-    PersonCollection personCollection = new PersonCollection();
     public static void main(String[] args) throws Exception{
+
         Scanner scanner = new Scanner(System.in);
         PersonCollection personCollection = new PersonCollection();
         String command = "";
-        Integer key;
         List history = new ArrayList();
         boolean erunda;
-        String subName;
-        Person person;
-        long height;
 
         while (true) {
 
@@ -25,12 +22,10 @@ public class Main {
 
             switch (command) {
                 case "help":
-                    personCollection.help();
+                    PersonCollection.help();
                     break;
                 case "insert null":
-
-                    person = InputUtil.requestPerson();
-                    personCollection.put(person.getId(), person);
+                    personCollection.insertNull();
                     break;
 
                case "info":
@@ -38,14 +33,11 @@ public class Main {
                     break;
 
                 case "exit":
-                    //Выходим
                     System.exit(0);
                     break;
 
                 case "remove_key null":
-                    System.out.print("Введите ключ: ");
-                    key = Integer.valueOf(scanner.nextLine());
-                    personCollection.removeKey(key);
+                    personCollection.removeKey(InputUtil.requestKey());
                     break;
 
                 case "clear":
@@ -53,9 +45,7 @@ public class Main {
                     break;
 
                 case "remove_greater_key null":
-                    System.out.print("Введите значение максимальный необходимый id: ");
-                    key = Integer.valueOf(scanner.nextLine());
-                    personCollection.removeGreaterKey(key);
+                    personCollection.removeGreaterKey(InputUtil.requestKey());
                     break;
 
                 case "show":
@@ -67,21 +57,15 @@ public class Main {
                     break;
 
                 case "filter_starts_with_name":
-                    System.out.print("Введите начало имени: ");
-                    subName = scanner.nextLine();
-                    personCollection.filterStartsWithName(subName);
+                    personCollection.filterStartsWithName(InputUtil.requestSubName());
                     break;
 
                 case "replace_if_lowe null":
-                    System.out.print("Введите ключ: ");
-                    key = Integer.valueOf(scanner.nextLine());
-                    personCollection.replaceIfLowe(key);
+                    personCollection.replaceIfLowe(InputUtil.requestKey());
                     break;
 
                 case "count_less_than_height":
-                    System.out.print("Введите высоту: ");
-                    height = Long.valueOf(scanner.nextLine());
-                    personCollection.countLessThanHeight(height);
+                    personCollection.countLessThanHeight(InputUtil.requestHeight());
                     break;
 
                 case "group_counting_by_nationality":
@@ -89,14 +73,12 @@ public class Main {
                     break;
 
                 case "update id":
-                    System.out.print("Введите ключ: ");
-                    key = Integer.valueOf(scanner.nextLine());
-                    personCollection.updateId(key);
+                    personCollection.updateId(InputUtil.requestKey());
                     break;
 
                 default:
                     erunda = true;
-                    System.out.println("Несуществующая, или неверно заданная команда! Проверьте корректность и повторите попытку.");
+                    System.out.println("Несуществующая, или неверно заданная команда! Проверьте корректность и повторите попытку");
             }
 
             if (!erunda) {

@@ -3,8 +3,23 @@ package collection;
 import java.time.ZonedDateTime;
 
 public class Person implements Comparable<Person> {
-    private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private Integer id = ++counter; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
+
+    @Override
+    public String toString() {
+        return
+                "Ключ: " + id +
+                ", Имя: " + name +
+                ", Координаты: " + coordinates +
+                ", Дата и время: " + creationDate +
+                ", Высота: " + height +
+                ", Вес" + weight +
+                ", Цвет волос: " + hairColor +
+                ", Национальность: " + nationality +
+                ", Локация: " + location;
+    }
+
     private Coordinates coordinates; //Поле не может быть null
     private java.time.ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Long height; //Поле может быть null, Значение поля должно быть больше 0
@@ -14,9 +29,7 @@ public class Person implements Comparable<Person> {
     private Location location; //Поле может быть null
     private static int counter = 0;
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() {return id;}
 
     public void setId(Integer id) {
         this.id = id;

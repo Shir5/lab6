@@ -1,22 +1,50 @@
 package collection;
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
+import org.w3c.dom.ls.LSOutput;
 import sun.security.krb5.internal.ETypeInfo;
 import util.InputUtil;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
+
+import java.util.*;
+
 import sun.security.krb5.internal.ETypeInfo;
-import java.util.List;
+
+import javax.crypto.spec.PSource;
 
 
 public class PersonCollection extends LinkedHashMap<Integer, Person> {
+    Date date = new Date();
 
     public void printInfo(){
-        System.out.println( "Тип класса " + getClass().getSuperclass().toString() + " Кол-во элементов: " + size());
+        System.out.println( "Тип класса " + getClass().getSuperclass().toString() +
+                "\nДата инициализации: " + date +
+                "\nКол-во элементов: " + size());
+    }
+
+    public void insertNull(){
+        Person person = InputUtil.requestPerson();
+        put(person.getId(), person);
     }
 
     public static void help() {
-        System.out.println("Доступные команды : \nClear - очистить коллекцию \ninsert null: добавить новый элемент с заданным ключом \ninfo : вывести в стандартный поток вывода информацию о коллекции (тип, количество элементов и т.д.) \nshow : вывести в стандартный поток вывода все элементы коллекции в строковом представлении \nupdate id {element} : обновить значение элемента коллекции, id которого равен заданному \nremove_key null : удалить элемент из коллекции по его ключу \nsave : сохранить коллекцию в файл \nexecute_script file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме. \nhistory : вывести последние 15 команд (без их аргументов) \nreplace_if_lowe null {element} : заменить значение по ключу, если новое значение меньше старого \nremove_greater_key null : удалить из коллекции все элементы, ключ которых превышает заданный \ngroup_counting_by_nationality : сгруппировать элементы коллекции по значению поля nationality, вывести количество элементов в каждой группе \ncount_less_than_height height : вывести количество элементов, значение поля height которых меньше заданного \nfilter_starts_with_name name : вывести элементы, значение поля name которых начинается с заданной подстроки \nexit : завершить программу (без сохранения в файл)" );
+        System.out.println("Доступные команды : \nClear - очистить" +
+                " коллекцию \ninsert null: добавить новый элемент с заданным" +
+                " ключом \ninfo : вывести в стандартный поток вывода информацию о коллекции" +
+                " (тип, количество элементов и т.д.) \nshow : вывести в стандартный поток вывода " +
+                "все элементы коллекции в строковом представлении \nupdate id {element} : обновить" +
+                " значение элемента коллекции, id которого равен заданному \nremove_key null : удалить" +
+                " элемент из коллекции по его ключу \nsave : сохранить коллекцию в файл \nexecute_script" +
+                " file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды" +
+                " в таком же виде, в котором их вводит пользователь в интерактивном режиме. \nhistory : " +
+                "вывести последние 15 команд (без их аргументов) \nreplace_if_lowe null {element} : заменить" +
+                " значение по ключу, если новое значение меньше старого \nremove_greater_key null : удалить" +
+                " из коллекции все элементы, ключ которых превышает заданный \ngroup_counting_by_nationality" +
+                " : сгруппировать элементы коллекции по значению поля nationality, вывести количество элементов" +
+                " в каждой группе \ncount_less_than_height height : вывести количество элементов, значение поля" +
+                " height которых меньше заданного \nfilter_starts_with_name name : вывести элементы, значение поля name " +
+                "которых начинается с заданной подстроки \nexit : завершить программу (без сохранения в файл)" );
+
     }
+
 
     public void removeGreaterKey (Integer id){
 

@@ -19,12 +19,12 @@ public class InputUtil {
             System.out.println("Введите координаты");
             System.out.print("Координата x: ");
             Float x = scanner.nextFloat();
-            if (x == null){
+            if (x == null || x <= -315){
                 throw new ProgramException("Не верные данные координаты x");
             }
             System.out.print("Координата y: ");
             Double y = scanner.nextDouble();
-            if (y == null){
+            if (y == null || y <= -188){
                 throw new ProgramException("Не верные данные координаты y");
             }
             System.out.print("Введите высоту: ");
@@ -79,4 +79,41 @@ public class InputUtil {
             return requestPerson();
         }
     }
+
+    public static Integer requestKey() {
+        try{
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Введите ключ: ");
+            Integer key = Integer.valueOf(scanner.nextLine());
+            return key;
+        } catch (Exception e) {
+            System.out.println("Неправильный формат ввода");
+            return requestKey();
+        }
+
+    }
+
+    public static long requestHeight() {
+        try {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Введите высоту: ");
+            long height = Long.parseLong(scanner.nextLine());
+            return height;
+        } catch (Exception e) {
+            System.out.println("Неправильный формат ввода");
+            return requestHeight();
+        }
+    }
+
+    public static String requestSubName() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Введите начало имени: ");
+        String subName= scanner.nextLine();
+        if (subName.isEmpty()) {
+            System.out.println("Подстрока не может быть пустой");
+            return requestSubName();
+        }
+        return subName;
+    }
+
 }
